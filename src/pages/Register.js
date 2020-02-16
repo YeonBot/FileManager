@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import axios from 'axios';
 import './Login.css';
 
 function reducer(state, action) {
@@ -21,11 +22,29 @@ const Register = () => {
 		dispatch(e.target);
 	};
 
+	const onClick = () => {
+		console.log('onClick');
+		register();
+	};
+
+	const register = () => {
+		console.log('registeraaa');
+		axios
+			.post('/api/user')
+			.then(response => {
+				console.log(response);
+			})
+			.catch(response => {
+				console.log(response);
+			});
+	};
+
 	return (
 		<div className="text-center">
 			<form className="form-signin">
 				<img
 					className="mb-4"
+					alt=""
 					src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQrhRq8OwKDpafPNc-6QTjaIwILBSCHqvfqnI_CVh2utdPh6QOZ"
 					width="72"
 					height="72"
@@ -36,7 +55,7 @@ const Register = () => {
 					className="form-control"
 					placeholder="이메일"
 					name="email"
-					value={state.email}
+					value={email}
 					onChange={onChange}
 					required
 					autoFocus
@@ -73,12 +92,10 @@ const Register = () => {
 						<input type="checkbox" value="remember-me" /> Remember me 지워
 					</label>
 				</div>
-				<button className="btn btn-lg btn-primary btn-block" type="submit">
+				<button className="btn btn-lg btn-primary btn-block" onClick={onClick}>
 					계정 만들기
 				</button>
-				<p className="mt-5 mb-3 text-muted">
-					이미 계정이 있으신가요 ? <a>로그인</a>
-				</p>
+				<p className="mt-5 mb-3 text-muted">이미 계정이 있으신가요 ? 로그인</p>
 			</form>
 		</div>
 	);
