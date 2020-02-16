@@ -4,6 +4,7 @@
 - [React 와 Node Proxy 설정](#React 와 Node Express Proxy 설정)
 - [react-router사용 하기](#react-router사용 하기)
 - [회원가입 화면 부트스트랩으로 꾸미기](#회원가입 화면 부트스트랩으로 꾸미기)
+- [회원가입 화면 에서 Hook 이용해서 값 받기](#R회원가입 화면 에서 Hook 이용해서 값 받기)
 
 ## React 와 Node Proxy 설정
 
@@ -44,3 +45,35 @@ react-router-dom 은 웹 페이지 , react-router-native 는 모바일에서 사
 ![회원가입 페이지](https://user-images.githubusercontent.com/39260395/74606564-d56b5b80-5114-11ea-88b2-734ad8cbeb71.png)
 부트스트랩을 이용해서 만들고 css를 직접 변경 했다.  
 css 가 금방 더러워 질거 같아서 scss 또는 componentstyled 를 얼른 도입 해야 할거 같다 
+
+## 회원가입 화면 에서 Hook 이용해서 값 받기
+
+react,react-dom 16.8 이상. -> Hook 사용하는데 에러나서 react 업데이트
+package.json 전체적으로 업그레이드 하기 :: npm-check-updates  
+https://ux.stories.pe.kr/58
+
+useReducer 를 이용해 여러 parameter 를 입력 받음
+
+### Hook 이란 ?
+상태와 생명주기를 관리 하는 새로운 방법
+
+#### `장단점`
+장점
+- 응집성과 조립성, 코드의 양이 적다 (class 보다)
+- 라이프 사이클 메서드 보다 단순  
+
+단점
+- 클래스에서 사용 불가,  
+
+##### `규칙`
+- Top Level 에서만 Hook 을 호출 해야 한다. 반복문 조건문, 중첩된 함수 내에서 Hook 호출 금지  
+- 오직 React 함수 내에서 Hook 을 호출
+
+
+아직은 잘모르겠다 . 써보고 다시 정리 하자  
+
+
+## 하고 싶은거
+- TypeScript 추가
+- ESLint 추가
+- 

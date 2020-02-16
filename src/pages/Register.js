@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import './Login.css';
 
+function reducer(state, action) {
+	return {
+		...state,
+		[action.name]: action.value
+	};
+}
+
 const Register = () => {
+	const [state, dispatch] = useReducer(reducer, {
+		email: '',
+		password: '',
+		passwordCheck: '',
+		name: ''
+	});
+
+	const { email, password, passwordCheck, name } = state;
+	const onChange = e => {
+		dispatch(e.target);
+	};
+
 	return (
 		<div className="text-center">
 			<form className="form-signin">
@@ -14,36 +33,44 @@ const Register = () => {
 				<h1 className="h3 mb-3 font-weight-normal">회원 가입 해주세요</h1>
 				<input
 					type="email"
-					id="inputEmail"
 					className="form-control"
 					placeholder="이메일"
+					name="email"
+					value={state.email}
+					onChange={onChange}
 					required
 					autoFocus
 				/>
 				<input
 					type="password"
-					id="inputPassword"
 					className="form-control"
 					placeholder="비밀번호"
+					name="password"
+					value={password}
+					onChange={onChange}
 					required
 				/>
 				<input
 					type="password"
-					id="inputPassword2"
 					className="form-control"
 					placeholder="비밀번호 확인"
+					name="passwordCheck"
+					value={passwordCheck}
+					onChange={onChange}
 					required
 				/>
 				<input
 					type="text"
-					id="inputNickname"
 					className="form-control"
-					placeholder="비밀번호"
+					placeholder="이름"
+					name="name"
+					value={name}
+					onChange={onChange}
 					required
 				/>
 				<div className="checkbox mb-3">
 					<label>
-						<input type="checkbox" value="remember-me" /> Remember me
+						<input type="checkbox" value="remember-me" /> Remember me 지워
 					</label>
 				</div>
 				<button className="btn btn-lg btn-primary btn-block" type="submit">
