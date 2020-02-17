@@ -34,7 +34,11 @@ const Register = () => {
 	const register = () => {
 		console.log('registeraaa');
 		axios
-			.post('/api/user')
+			.post('/api/user/signup',{
+			email:email,
+			password:password,
+			name:name
+		})
 			.then(response => {
 				console.log(response);
 			})

@@ -76,8 +76,19 @@ module.exports = function (app) {
 ## Axios 이용 서버 요청 보내기 & 회원가입 성공 시키기
 - axios 를이용해 서버에 회원가입 요청하기
 - Node Express에서 ES6문법 활성화 하기 ( Babel이용 )
-- 서버에 회원가입 코드 짜기
 - MongoDB 연동하기
+	- service mongod start 시 아래 에러 발생 (mongod 는 가능하지만..)
+	- mongod: unrecognized service Error  
+	 서비스 실행을 위한 파일이 만들어지지 않아서이기 때문
+	- service 명령어를 위해 https://github.com/mongodb/mongo/blob/master/debian/init.d
+	파일을 etc/init.d/mongod 에 생성 :: 잘 동작한다.
+	- Mongoose VS MongoDB  
+	Mongoose 는 속도 저하가 있지만 다양한 기능들로 편의성 높였다.  
+	ODM의 사용은 코드 구성이나 개발 편의성 측면에서 장점  
+	확장 및 변경이 가능한 자체 검증(Validation)과 타입 변환(Casting)이 가능하며 Express와 함께 사용하면 MVC Concept 구현이 용이  
+	Mongoose 를 채택하려 한다.  
+- 서버에 회원가입 코드 짜기
+	- react 에서 axios로 넘겨준 값을  mongoose 를 이용해 저장
 - 
 
 
