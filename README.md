@@ -73,8 +73,12 @@ module.exports = function (app) {
 
 아직은 잘모르겠다 . 써보고 다시 정리 하자  
 
-## Axios 이용 서버 요청 보내기
-axios 를이용해 서버에 회원가입 요청하기
+## Axios 이용 서버 요청 보내기 & 회원가입 성공 시키기
+- axios 를이용해 서버에 회원가입 요청하기
+- Node Express에서 ES6문법 활성화 하기 ( Babel이용 )
+- 서버에 회원가입 코드 짜기
+- MongoDB 연동하기
+- 
 
 
 ## 하고 싶은거

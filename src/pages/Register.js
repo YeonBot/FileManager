@@ -24,6 +24,10 @@ const Register = () => {
 
 	const onClick = () => {
 		console.log('onClick');
+		//TODO: 데이터가 비진 않았는지 check
+		//비밀번호가 같은지
+		//이메일 형식인지
+		
 		register();
 	};
 

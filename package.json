@@ -17,7 +17,7 @@
   "scripts": {
     "start": "npm-run-all --parallel start:**",
     "start:client": "cross-env NODE_PATH=src react-scripts start",
-    "start:server": "node ./server/app.js",
+    "start:server": "nodemon ./server/app.js",
     "build": "cross-env NODE_PATH=src react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
