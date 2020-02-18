@@ -13,6 +13,7 @@ router.post('/signin', async (req, res) => {
 			} else if (result.password !== req.body.password) {
 				res.status(400).json({ error: 'USER DOES NOT EXIST' });
 			}
+			
 			req.session.logined = true;
 			req.session.userId = result.id;
 			req.session.userEmail = result.email;

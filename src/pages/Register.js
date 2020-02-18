@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import axios from 'axios';
+import * as userService from 'services/userService';
 import './Login.css';
 
 function reducer(state, action) {
@@ -28,23 +28,11 @@ const Register = () => {
 		//비밀번호가 같은지
 		//이메일 형식인지
 		
-		register();
-	};
-
-	const register = () => {
-		console.log('registeraaa');
-		axios
-			.post('/api/user/signup',{
+		userService.register({
 			email:email,
 			password:password,
 			name:name
-		})
-			.then(response => {
-				console.log(response);
-			})
-			.catch(response => {
-				console.log(response);
-			});
+		});
 	};
 
 	return (

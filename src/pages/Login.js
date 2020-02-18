@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import axios from 'axios';
+import * as userService from 'services/userService';
 
 function reducer(state, action) {
 	return {
@@ -22,25 +22,11 @@ const Login = (props) => {
 		//TODO: 데이터가 비진 않았는지 check
 		//이메일 형식인지
 		
-		login();
-	};
-
-	const login = () => {
-		console.log('login');
-		axios
-			.post('/api/user/signin',{
+		userService.login({
 			email:email,
 			password:password
-		})
-			.then(response => {
-				console.log(response);
-				props.history.push('/');				
-			})
-			.catch(response => {
-				console.log(response);
-			});
-	};
-	
+		},props);
+	};	
 	
 	return (
 		<div className="text-center">

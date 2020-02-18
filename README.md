@@ -102,6 +102,17 @@ module.exports = function (app) {
 - 비밀번호 확인, 로그인 성공, 등등
 
 ## 세션 구현 하기 
+1. react:: ID,PW 를 이용한 로그인
+2. express:: 인증 성공시 session에 값 저장. 
+	- express-session을 이용해 session 값 저장
+	- 로그인 성공 return
+3. react::로그인 성공시 state또는 localstorage에 로그인 성공을 저장
+	- state로 로그인 성공을 확인하면 리렌더링 발생.
+	- localstorage를 이용하려고 함. user 가 localstorage에 값을 넣더라도 react 에서만 일어나고 session 은 cookie에 저장 되어 있어 server에 영향을 미치지 못할거 같음
+4. Cookie에는 SeessionID생성, request 마다 req.session으로 값을 보내게 된다.
+	 - react와 server proxy 설정으로 따로 값을 안넣어줬는데도 보내주는 현상 발생, 나중에 따로 배포한다면 cors와 header error 가 생길거 같음
+5. API 요청마다 server는 session확인 합니다.
+
 
 
 

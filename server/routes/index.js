@@ -19,7 +19,6 @@ router.get('/session', (req, res) => {
 	}else {
 		res.json({result: 'login please'});
 	}
-	
 });
 
 export default router;

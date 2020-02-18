@@ -3,7 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import { Route } from 'react-router-dom';
-import { Home, Login, Register } from 'pages';
+import { default as AuthRouter } from './AuthRouter';
+import { Home, Login, Register, FileManager,ChattingManager} from 'pages';
 
 import Header from 'components/Header';
 
@@ -11,11 +12,13 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Header />
 
+				<Route path="/" component={Header} />
 					<Route exact path="/" component={Home} />
 					<Route path="/Login" component={Login} />
 					<Route path="/Register" component={Register} />
+					<AuthRouter path="/FileManager" component={FileManager} />
+					<AuthRouter path="/ChattingManager" component={ChattingManager} />				
 			</div>
 		);
 	}
