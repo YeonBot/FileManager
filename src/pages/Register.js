@@ -49,7 +49,7 @@ const Register = () => {
 
 	return (
 		<div className="text-center">
-			<form className="form-signin">
+			<div className="form-signin">
 				<img
 					className="mb-4"
 					alt=""
@@ -95,16 +95,11 @@ const Register = () => {
 					onChange={onChange}
 					required
 				/>
-				<div className="checkbox mb-3">
-					<label>
-						<input type="checkbox" value="remember-me" /> Remember me 지워
-					</label>
-				</div>
 				<button className="btn btn-lg btn-primary btn-block" onClick={onClick}>
 					계정 만들기
 				</button>
 				<p className="mt-5 mb-3 text-muted">이미 계정이 있으신가요 ? 로그인</p>
-			</form>
+			</div>
 		</div>
 	);
 };

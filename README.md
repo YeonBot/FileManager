@@ -49,7 +49,7 @@ module.exports = function (app) {
 
 ## 회원가입 화면 에서 Hook 이용해서 값 받기
 
-- react,react-dom 16.8 이상. -> Hook 사용하는데 에러나서 react 업데이트
+- `[Error]`react,react-dom 16.8 이상. -> Hook 사용하는데 에러나서 react 업데이트
 - package.json 전체적으로 업그레이드 하기 :: npm-check-updates  
 출처 : https://ux.stories.pe.kr/58
 
@@ -73,11 +73,13 @@ module.exports = function (app) {
 
 아직은 잘모르겠다 . 써보고 다시 정리 하자  
 
-## Axios 이용 서버 요청 보내기 & 회원가입 성공 시키기
+## Axios 이용 서버 요청 보내기 & 회원가입,로그인 성공 시키기 
 - axios 를이용해 서버에 회원가입 요청하기
 - Node Express에서 ES6문법 활성화 하기 ( Babel이용 )
+- `[Error]` Nodemon 이 재실행 될때 port 충돌 나는 현상 발생
+	- nodemon.json 으로 custom (재실행 될떄 port 3001 꺼주도록 변경)
 - MongoDB 연동하기
-	- service mongod start 시 아래 에러 발생 (mongod 는 가능하지만..)
+	- `[Error]`service mongod start 시 아래 에러 발생 (mongod 는 가능하지만..)
 	- mongod: unrecognized service Error  
 	 서비스 실행을 위한 파일이 만들어지지 않아서이기 때문
 	- service 명령어를 위해 https://github.com/mongodb/mongo/blob/master/debian/init.d
@@ -90,7 +92,11 @@ module.exports = function (app) {
 - 서버에 회원가입 코드 짜기
 	- react 에서 axios로 넘겨준 값을  mongoose 를 이용해 저장
 	- postman 을 이용해 email 로 user 정보 가져오기
-- 
+- React에 로그인 화면 만들기
+	- <form>태그 안에 있는 <button> 클릭시 화면 다시 켜지는 문제 발생  <form> -> <div> 로 변경
+	- history.push이용해 login이 화면 전환
+	
+
 
 
 ## 하고 싶은거
