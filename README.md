@@ -89,6 +89,7 @@ module.exports = function (app) {
 	Mongoose 를 채택하려 한다.  
 - 서버에 회원가입 코드 짜기
 	- react 에서 axios로 넘겨준 값을  mongoose 를 이용해 저장
+	- postman 을 이용해 email 로 user 정보 가져오기
 - 
 
 
