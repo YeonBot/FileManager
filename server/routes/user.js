@@ -13,6 +13,10 @@ router.post('/signin', async (req, res) => {
 			} else if (result.password !== req.body.password) {
 				res.status(400).json({ error: 'USER DOES NOT EXIST' });
 			}
+			req.session.logined = true;
+			req.session.userId = result.id;
+			req.session.userEmail = result.email;
+
 			return result;
 		})
 		.catch(err => {
@@ -40,7 +44,13 @@ router.post('/signup', (req, res) => {
 			throw err;
 		});
 
-	res.json({ result: 1 });
+	res.json({ msg: "Success user signUp." });
+});
+
+router.post('/logout', (req, res) => {
+	console.log('logout');
+	req.session.destroy();
+	res.json({ msg: "Success user logout." });
 });
 
 export default router;
