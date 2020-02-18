@@ -8,7 +8,11 @@ router.post('/signin', async (req, res) => {
 
 	const userInfo = await User.findOne({ email: req.body.email })
 		.then(result => {
-			// null check , return 회원 없음.
+			if (!result) {
+				res.status(400).json({ error: 'USER DOES NOT EXIST' });
+			} else if (result.password !== req.body.password) {
+				res.status(400).json({ error: 'USER DOES NOT EXIST' });
+			}
 			return result;
 		})
 		.catch(err => {

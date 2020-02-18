@@ -1,11 +1,12 @@
 ## 웹 페이지 개발 일지
 
 ## 목차
-- [React 와 Node Proxy 설정](##React 와 Node Express Proxy 설정)
-- [react-router사용 하기](##react-router사용 하기)
-- [회원가입 화면 부트스트랩으로 꾸미기](##회원가입 화면 부트스트랩으로 꾸미기)
-- [회원가입 화면 에서 Hook 이용해서 값 받기](##R회원가입 화면 에서 Hook 이용해서 값 받기)
-- [Axios 이용 서버 요청 보내기](##Axios 이용 서버 요청 보내기)
+- [React 와 Node Proxy 설정](# 1)
+- [react-router사용 하기](#react-router사용 하기)
+- [회원가입 화면 부트스트랩으로 꾸미기](#회원가입 화면 부트스트랩으로 꾸미기)
+- [회원가입 화면 에서 Hook 이용해서 값 받기](#R회원가입 화면 에서 Hook 이용해서 값 받기)
+- [Axios 이용 서버 요청 보내기](#Axios 이용 서버 요청 보내기)
+- [세션 구현하기](#asd)
 
 ## React 와 Node Proxy 설정
 
@@ -96,10 +97,15 @@ module.exports = function (app) {
 	- <form>태그 안에 있는 <button> 클릭시 화면 다시 켜지는 문제 발생  <form> -> <div> 로 변경
 	- history.push이용해 login이 화면 전환
 	
+##### 나머지 기능들은 다음에 구현
+- 비밀번호 암호화
+- 비밀번호 확인, 로그인 성공, 등등
+
+## 세션 구현 하기 
 
 
 
 ## 하고 싶은거
 - TypeScript 추가
 - ESLint 추가
-- 
+- css 
