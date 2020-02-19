@@ -1,10 +1,16 @@
 import express from 'express';
 import User from '../models/user';
+import * as validators from '../services/validator';
+import { check, oneOf, validationResult, validator } from 'express-validator';
+
+
 const router = express.Router();
 
-router.post('/signin', async (req, res) => {
+router.post('/signin', validators.userSignup ,handleValidationErrors, async (req, res) => {
 	console.log('signin');
 	console.log(req.body.email);
+	
+	
 
 	const userInfo = await User.findOne({ email: req.body.email })
 		.then(result => {
@@ -27,11 +33,8 @@ router.post('/signin', async (req, res) => {
 	res.json(userInfo);
 });
 
-router.post('/signup', (req, res) => {
-	console.log('signup');
-	console.log(req.body.email);
-	console.log(req.body.password);
-	console.log(req.body.name);
+router.post('/signup', validators.userSignin ,handleValidationErrors,  (req, res) => {
+	console.log('signup');	
 
 	User.create({
 		email: req.body.email,
@@ -53,5 +56,14 @@ router.post('/logout', (req, res) => {
 	req.session.destroy();
 	res.json({ msg: "Success user logout." });
 });
+
+function handleValidationErrors(req,res ,next) {
+	const errors = validationResult(req);
+	if(!errors.isEmpty()){
+		console.log(errors.array());
+    	return res.status(422).json({ errors: errors.array() });
+	}
+	next(); 
+}
 
 export default router;

@@ -115,6 +115,22 @@ module.exports = function (app) {
 5. API 요청마다 server는 session확인 합니다.
 
 ## Styled Component 사용하기
+- header grid 잡기 및 색상 변경
+
+## NodeServer 프로잭트 설계 하기 & node 리팩토링
+
+폴더 구조
+~~~
+server
+ㄴ	app.js   	# App 시작 지점
+ㄴ	api   		# controller
+ㄴ	services  	# 비즈니스 로직
+ㄴ	models		# Database models
+ㄴ	
+~~~
+
+- request data validation
+	- 모듈이 많음. npm 다운 수 높은 express-validator 선택
 
 
 ## 하고 싶은거

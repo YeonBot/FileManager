@@ -4,8 +4,8 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import session from 'express-session';
 
-import api from './routes/index';
-import apiUser from './routes/user';
+import api from './api/index';
+import apiUser from './api/user';
 
 const app = express();
 
@@ -17,6 +17,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }))
+
 
 app.use('/api', api);
 app.use('/api/user', apiUser);
