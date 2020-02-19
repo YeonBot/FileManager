@@ -131,7 +131,8 @@ server
 
 - request data validation
 	- 모듈이 많음. npm 다운 수 높은 express-validator 선택
-
+- Controller Service DAO 분리
+- Service Exception 처리
 
 ## 하고 싶은거
 - TypeScript 추가
