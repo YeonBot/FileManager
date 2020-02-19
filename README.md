@@ -6,7 +6,8 @@
 - [회원가입 화면 부트스트랩으로 꾸미기](#회원가입 화면 부트스트랩으로 꾸미기)
 - [회원가입 화면 에서 Hook 이용해서 값 받기](#R회원가입 화면 에서 Hook 이용해서 값 받기)
 - [Axios 이용 서버 요청 보내기](#Axios 이용 서버 요청 보내기)
-- [세션 구현하기](#asd)
+- [세션 구현하기](#세션 구현하기)
+- [Styled Component 사용하기](#Styled Component 사용하기)
 
 ## React 와 Node Proxy 설정
 
@@ -113,7 +114,7 @@ module.exports = function (app) {
 	 - react와 server proxy 설정으로 따로 값을 안넣어줬는데도 보내주는 현상 발생, 나중에 따로 배포한다면 cors와 header error 가 생길거 같음
 5. API 요청마다 server는 session확인 합니다.
 
-
+## Styled Component 사용하기
 
 
 ## 하고 싶은거

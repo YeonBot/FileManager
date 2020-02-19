@@ -4,16 +4,16 @@ import './App.css';
 
 import { Route } from 'react-router-dom';
 import { default as AuthRouter } from './AuthRouter';
-import { Home, Login, Register, FileManager,ChattingManager} from 'pages';
 
+import { Home, Login, Register, FileManager,ChattingManager} from 'pages';
 import Header from 'components/Header';
 
 class App extends Component {
 	render() {
 		return (
 			<div className="App">
-
-				<Route path="/" component={Header} />
+					<Route path="/" component={Header} />
+				
 					<Route exact path="/" component={Home} />
 					<Route path="/Login" component={Login} />
 					<Route path="/Register" component={Register} />
