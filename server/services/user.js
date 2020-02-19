@@ -41,7 +41,7 @@ export const addSession = (session, userInfo) => {
 };
 
 export const deleteSession = session => {
-	console.log('service::addSession');
+	console.log('service::deleteSession');
 
 	session.destroy();
 };
