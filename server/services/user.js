@@ -36,8 +36,10 @@ export const addSession = (session, userInfo) => {
 	console.log('service::addSession');
 
 	session.logined = true;
-	session.userId = userInfo.email;
-	session.userEmail = userInfo.name;
+	session.userEmail = userInfo.email;
+	session.userName = userInfo.name;
+	
+	console.log(session);
 };
 
 export const deleteSession = session => {

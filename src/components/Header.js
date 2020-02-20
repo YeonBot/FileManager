@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import * as userService from 'services/userService';
+import * as UserService from 'services/userService';
 
 const StyledLink = styled(NavLink)`
 	color: white;
@@ -31,7 +31,7 @@ const StyledLogoutButton = styled.button`
 
 function Header(props) {
 	const logout = () => {
-		userService.logout(props);
+		UserService.logout(props);
 	};
 
 	const authHeader = () => {

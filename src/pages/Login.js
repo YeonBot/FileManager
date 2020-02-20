@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import * as userService from 'services/userService';
+import * as UserService from 'services/userService';
 
 function reducer(state, action) {
 	return {
@@ -22,7 +22,7 @@ const Login = (props) => {
 		//TODO: 데이터가 비진 않았는지 check
 		//이메일 형식인지
 		
-		userService.login({
+		UserService.login({
 			email:email,
 			password:password
 		},props);

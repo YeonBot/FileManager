@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import * as userService from 'services/userService';
+import * as UserService from 'services/userService';
 import './Login.css';
 
 function reducer(state, action) {
@@ -28,7 +28,7 @@ const Register = () => {
 		//비밀번호가 같은지
 		//이메일 형식인지
 		
-		userService.register({
+		UserService.register({
 			email:email,
 			password:password,
 			name:name

@@ -4,7 +4,6 @@ const LOCAL_STORAGE_KEY="user";
 
 export const login = (userLoginInfo, props) => {
 	console.log('axios.login');
-	console.log('login');
 	axios
 		.post('/api/user/signin', userLoginInfo)
 		.then(response => {

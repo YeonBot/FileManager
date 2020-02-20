@@ -4,6 +4,9 @@ import session from 'express-session';
 
 import api from '../api/index';
 import apiUser from '../api/user';
+import apiFile from '../api/file';
+
+import * as validators from '../services/validator';
 
 export default async ({ app }) => {
 	app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,6 +22,9 @@ export default async ({ app }) => {
 
 	app.use('/api', api);
 	app.use('/api/user', apiUser);
+	
+	app.use(validators.sessionCheck);
+	app.use('/api/file', apiFile);
 
 	// ...More middlewares
 

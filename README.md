@@ -8,6 +8,8 @@
 - [Axios 이용 서버 요청 보내기](#Axios 이용 서버 요청 보내기)
 - [세션 구현하기](#세션 구현하기)
 - [Styled Component 사용하기](#Styled Component 사용하기)
+- [NodeServer 프로잭트 설계 하기 & node 리팩토링](#NodeServer 프로잭트 설계 하기 & node 리팩토링)
+- [파일 업로드 기능 구현 하기](#파일 업로드 기능 구현 하기)
 
 ## React 와 Node Proxy 설정
 
@@ -122,19 +124,23 @@ module.exports = function (app) {
 폴더 구조
 ~~~
 server
-ㄴ	app.js   	# App 시작 지점
+ㄴ	app.js    	# App 시작 지점
 ㄴ	api   		# controller
 ㄴ	services  	# 비즈니스 로직
 ㄴ	models		# Database models
-ㄴ	
+ㄴ	loaders   	# start 모듈 분리
 ~~~
 
 - request data validation
 	- 모듈이 많음. npm 다운 수 높은 express-validator 선택
 - Controller Service DAO 분리
-- Service Layer Exception 처리
+- Service Laye Exception 처리
+
+
+## 파일 업로드 기능 구현 하기 
+- multer 모듈 install
+
 
 ## 하고 싶은거
 - TypeScript 추가
 - ESLint 추가
-- css 
