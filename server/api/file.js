@@ -12,7 +12,7 @@ let storage = multer.diskStorage({
 	}
 });
 
-// 1. multer 미들웨어 등록
+// multer 미들웨어 등록
 let upload = multer({
 	storage: storage
 });
@@ -20,9 +20,11 @@ let upload = multer({
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-	console.log('controller::file list');
+	console.log('controller::get file list');
 
-	res.json({ file: 'file' });
+	const files = await FileService.getFileList(req.session.userEmail);
+
+	res.status(200).json(files);
 });
 
 router.post('/', upload.single('imgFile'), async (req, res) => {
@@ -30,7 +32,7 @@ router.post('/', upload.single('imgFile'), async (req, res) => {
 
 	let file = req.file;
 
-	FileService.uploadFileByDB(file, req.session);
+	FileService.uploadFileByDB(file, req.session.userEmail);
 
 	res.json(file);
 });
