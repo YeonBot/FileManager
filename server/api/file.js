@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
 	res.status(200).json(files);
 });
 
-router.post('/', upload.single('imgFile'), async (req, res) => {
+router.post('/', upload.single('file'), async (req, res) => {
 	console.log('controller::file upload');
 
 	let file = req.file;
