@@ -20,15 +20,21 @@ let upload = multer({
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-	console.log('controller::get file list');
 
 	const files = await FileService.getFileList(req.session.userEmail);
 
 	res.status(200).json(files);
 });
 
+router.get('/:id', async (req, res) => {
+	
+	const file = await FileService.getFileFromDB(req.params.id);
+	const fileAddedFileContent = await FileService.getFileFromDir(file);
+
+	res.status(200).json(fileAddedFileContent);
+});
+
 router.post('/', upload.single('file'), async (req, res) => {
-	console.log('controller::file upload');
 
 	let file = req.file;
 
@@ -36,5 +42,15 @@ router.post('/', upload.single('file'), async (req, res) => {
 
 	res.json(file);
 });
+
+router.put('/', async (req, res) => {
+	
+	const file = req.body;
+	
+	FileService.editFileFromDir(file);
+
+	res.json();
+});
+
 
 export default router;

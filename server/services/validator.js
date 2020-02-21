@@ -35,7 +35,7 @@ export const userSignin = [
 ];
 
 export const sessionCheck = (req, res, next) => {
-	console.log('sessionCheck');
+
 	if (!req.session.logined) {
 		res.status(400).json({ errors: 'required login' });
 	}else{

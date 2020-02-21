@@ -38,8 +38,6 @@ export const addSession = (session, userInfo) => {
 	session.logined = true;
 	session.userEmail = userInfo.email;
 	session.userName = userInfo.name;
-	
-	console.log(session);
 };
 
 export const deleteSession = session => {
