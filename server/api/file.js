@@ -37,8 +37,9 @@ router.get('/:id', async (req, res) => {
 router.post('/', upload.single('file'), async (req, res) => {
 
 	let file = req.file;
-
-	FileService.uploadFileByDB(file, req.session.userEmail);
+	
+	FileService.uploadFile(file, req.session.userEmail);
+	  
 
 	res.json(file);
 });
