@@ -5,9 +5,13 @@ import mkdirp from 'mkdirp';
 
 import FileModel from '../models/file';
 
-export const uploadFile = (file, userEmail) => {
+export const uploadFile = async(file, userEmail) => {
 	if (file.mimetype === 'application/zip' || file.mimetype === 'application/tar') {
-		decompressionFileAndUpload(file, userEmail);
+		await decompressionFileAndUpload(file, userEmail);
+		console.log(file.path);
+		fs.unlink(file.path,(err)=>{
+			if (err) throw err;
+		});
 	} else {
 		uploadFileByDB(file, userEmail);
 	}
@@ -67,7 +71,6 @@ export const decompressionFileAndUpload = (file, userEmail) => {
 
 		zipfile.on('entry', function(entry) {
 			if (/\/$/.test(entry.fileName)) {
-				console.log('entryFilename' + entry.fileName);
 				zipfile.readEntry();
 			} else {
 				zipfile.openReadStream(entry, function(err, readStream) {
@@ -79,10 +82,6 @@ export const decompressionFileAndUpload = (file, userEmail) => {
 
 					var filePath = entry.fileName.split('/');
 					let fileName = filePath[filePath.length - 1];
-
-					console.log('파일 이름');
-					console.log(fileName);
-					console.log(filePath);
 
 					// .으로 시작하는 파일은 저장 하지 않는다.
 					if (fileName.charAt(0) === '.') {

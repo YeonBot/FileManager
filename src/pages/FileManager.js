@@ -65,7 +65,7 @@ class FileManager extends React.Component {
 		return this.state.allFileData.map(fileData => {
 			return (
 				<li onClick={() => this.clickFileList(fileData._id)}>
-					{fileData.originalname}
+					{fileData.path}
 				</li>
 			);
 		});
