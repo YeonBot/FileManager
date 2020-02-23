@@ -1,6 +1,8 @@
 import React from 'react';
 import * as FileService from 'services/fileService';
 
+import { FileTextArea, FileAddition, FileListView } from 'components';
+
 class FileManager extends React.Component {
 	state = {
 		postFile: null,
@@ -23,13 +25,13 @@ class FileManager extends React.Component {
 		});
 	};
 
-	handleTextAreaChange = e => {
-		this.setState({ fileContent: e.target.value });
+	handleTextAreaChange = value => {
+		this.setState({ fileContent: value });
 	};
 
 	handleSave = async () => {
 		console.log('put axios data');
-		FileService.editFile(this.state.fileContent,this.state.selectedFile,this.props);
+		FileService.editFile(this.state.fileContent, this.state.selectedFile, this.props);
 	};
 
 	handleFileInput = e => {
@@ -60,33 +62,18 @@ class FileManager extends React.Component {
 		});
 	};
 
-	showFileList = () => {
-		if (this.state.allFileData.length === 0) return;
-		return this.state.allFileData.map(fileData => {
-			return (
-				<li onClick={() => this.clickFileList(fileData._id)}>
-					{fileData.path}
-				</li>
-			);
-		});
-	};
-
 	render() {
+		
 		return (
-			<div>
-				<h2>FileManager</h2>
-
-				<label>
-					upload file :
-					<input type="file" name="file" onChange={e => this.handleFileInput(e)} />
-				</label>
-				<br />
-				<button onClick={() => this.handlePost()}>Submit</button>
-
-				<ul>{this.showFileList()}</ul>
-
-				<textarea value={this.state.fileContent} onChange={this.handleTextAreaChange} />
-				<button onClick={() => this.handleSave()}>Save</button>
+			<div className="row fullscrean">
+				<div className="col-3">
+					<FileAddition handleFileInput={this.handleFileInput} handlePost={this.handlePost} />
+					<FileListView selectedFile={this.state.selectedFile} allFileData={this.state.allFileData} clickFileList={this.clickFileList}/>
+					
+				</div>
+				<div className="col-9">
+					<FileTextArea selectedFile={this.state.selectedFile} fileContent={this.state.fileContent} handleTextAreaChange={this.handleTextAreaChange} handleSave={this.handleSave}/>
+				</div>
 			</div>
 		);
 	}

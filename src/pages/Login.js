@@ -1,5 +1,20 @@
 import React, { useReducer } from 'react';
+import styled from 'styled-components';
+
 import * as UserService from 'services/userService';
+
+const FormSignin = styled.div`
+	width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+`;
+
+const LoginPage = styled.div`
+	height: 90%;
+	align-items: center;
+	display: flex;
+`;
 
 function reducer(state, action) {
 	return {
@@ -29,8 +44,8 @@ const Login = (props) => {
 	};	
 	
 	return (
-		<div className="text-center">
-			<div className="form-signin">
+		<LoginPage>
+			<FormSignin>
 				<img
 					className="mb-4"
 					alt=""
@@ -67,8 +82,8 @@ const Login = (props) => {
 					로그인
 				</button>
 				<p className="mt-5 mb-3 text-muted">계정이 없으신가요 ? 회원가입</p>
-			</div>
-		</div>
+			</FormSignin>
+		</LoginPage>
 	);
 };
 

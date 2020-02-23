@@ -39,12 +39,10 @@ function Header(props) {
 		return !userInfo ? (
 			<React.Fragment>
 				<StyledLink activeClassName="active" to={'/login'}>
-					{' '}
-					로그인{' '}
+					로그인
 				</StyledLink>
 				<StyledLink activeClassName="active" to={'/register'}>
-					{' '}
-					회원가입{' '}
+					회원가입
 				</StyledLink>
 			</React.Fragment>
 		) : (
@@ -59,18 +57,15 @@ function Header(props) {
 		<header className="App-header">
 			<div className="container">
 				<div className="row">
-					<div className="col text-left">
+					<div className="col text-left align-self-center">
 						<StyledLink activeClassName="active" exact to={'/'}>
-							{' '}
-							홈{' '}
+							홈
 						</StyledLink>
 						<StyledLink activeClassName="active" to={'/fileManager'}>
-							{' '}
-							파일{' '}
+							파일
 						</StyledLink>
 						<StyledLink activeClassName="active" to={'/chattingManager'}>
-							{' '}
-							채팅{' '}
+							채팅
 						</StyledLink>
 					</div>
 					<div className="col text-right">{authHeader()}</div>

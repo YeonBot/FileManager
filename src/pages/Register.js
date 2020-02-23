@@ -1,6 +1,19 @@
 import React, { useReducer } from 'react';
+import styled from 'styled-components';
 import * as UserService from 'services/userService';
-import './Login.css';
+
+const FormSignup = styled.div`
+	width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+`;
+
+const RegisterPage = styled.div`
+	height: 90%;
+	align-items: center;
+	display: flex;
+`;
 
 function reducer(state, action) {
 	return {
@@ -36,8 +49,8 @@ const Register = () => {
 	};
 
 	return (
-		<div className="text-center">
-			<div className="form-signin">
+		<RegisterPage>
+			<FormSignup>
 				<img
 					className="mb-4"
 					alt=""
@@ -87,8 +100,8 @@ const Register = () => {
 					계정 만들기
 				</button>
 				<p className="mt-5 mb-3 text-muted">이미 계정이 있으신가요 ? 로그인</p>
-			</div>
-		</div>
+			</FormSignup>
+		</RegisterPage>
 	);
 };
 

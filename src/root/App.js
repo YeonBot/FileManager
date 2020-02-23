@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'jquery/src/jquery';
 import './App.css';
 
 import { Route } from 'react-router-dom';

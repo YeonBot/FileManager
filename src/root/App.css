@@ -1,6 +1,6 @@
-.App {
+/* .App {
 	text-align: center;
-}
+} */
 
 
 .App-header {
@@ -12,6 +12,10 @@
 
 .App-link {
 	color: #61dafb;
+}
+
+.fullscrean {
+	height: 100%;
 }
 
 html, body, #root, .App {
