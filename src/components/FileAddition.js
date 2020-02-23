@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 const FileAddition = props => {
 	return (
@@ -7,13 +6,13 @@ const FileAddition = props => {
 			<label>
 				<input
 					type="file"
-					class="form-control btn btn-dark"
+					className="form-control btn btn-dark"
 					name="file"
 					onChange={e => props.handleFileInput(e)}
 				/>
 			</label>
 			<br />
-			<button type="button" class="btn btn-dark" onClick={() => props.handlePost()}>
+			<button type="button" className="btn btn-dark" onClick={() => props.handlePost()}>
 				파일 추가 하기
 			</button>
 		</div>

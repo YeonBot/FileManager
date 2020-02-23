@@ -31,7 +31,8 @@ const FileTextArea = (props) => {
 				onBeforeChange={(editor, data, value) => props.handleTextAreaChange(value)}
 				onChange={(editor, data, value) => {}}
 			/>
-			<button class="btn btn-dark" onClick={() => props.handleSave()}>Save</button>
+			<button className="btn btn-dark" onClick={() => props.handleSave()}>Save</button>
+			<button className="btn btn-dark" onClick={() => props.handleDelete()}>Delete</button>
 		</div>
 	);
 };

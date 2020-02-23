@@ -5,11 +5,11 @@ import mkdirp from 'mkdirp';
 
 import FileModel from '../models/file';
 
-export const uploadFile = async(file, userEmail) => {
+export const uploadFile = async (file, userEmail) => {
 	if (file.mimetype === 'application/zip' || file.mimetype === 'application/tar') {
 		await decompressionFileAndUpload(file, userEmail);
 		console.log(file.path);
-		fs.unlink(file.path,(err)=>{
+		fs.unlink(file.path, err => {
 			if (err) throw err;
 		});
 	} else {
@@ -42,7 +42,11 @@ export const getFileFromDB = fileId => {
 export const getFileFromDir = file => {
 	const fileObj = file.toObject();
 
-	fileObj['fileContent'] = fs.readFileSync(file.path, 'utf-8');
+	try{
+		fileObj['fileContent'] = fs.readFileSync(file.path, 'utf-8');
+	}catch(err){
+		throw err;
+	}
 
 	return fileObj;
 };
@@ -61,6 +65,22 @@ export const editFileFromDir = file => {
 	fs.writeFile(file.path, file.fileContent, 'utf-8', err => {
 		if (err) throw err;
 	});
+};
+
+export const deleteFileFromDir = filePath => {
+	fs.unlink(filePath, err => {
+		if (err) throw err;
+	});
+};
+
+export const deleteFileFromDB = fileId => {
+	return FileModel.deleteOne({ _id: fileId })
+		.then(result => {
+			return result;
+		})
+		.catch(err => {
+			throw err;
+		});
 };
 
 export const decompressionFileAndUpload = (file, userEmail) => {
@@ -99,18 +119,15 @@ export const decompressionFileAndUpload = (file, userEmail) => {
 							},
 							userEmail
 						);
-					} 
-					// Dir안에 들어 있다면 dir 생성.
-					else {
+					} else {
+						// Dir안에 들어 있다면 dir 생성.
 						const dirPath = path.dirname(entry.fileName);
 						const fileNameAddDate = fileName + ' - ' + Date.now();
 						const fullpath = path.join(tmpPath + '/' + dirPath, fileNameAddDate);
 
 						mkdirp.sync(tmpPath + '/' + dirPath);
-						readStream.pipe(
-							fs.createWriteStream(fullpath)
-						);
-						
+						readStream.pipe(fs.createWriteStream(fullpath));
+
 						uploadFileByDB(
 							{
 								originalname: fileName,
@@ -118,7 +135,6 @@ export const decompressionFileAndUpload = (file, userEmail) => {
 							},
 							userEmail
 						);
-						
 					}
 				});
 			}

@@ -4,7 +4,7 @@ const LOCAL_STORAGE_KEY="user";
 
 const expiredSession = (response,props) => {
 	
-	if (response.data.errors === 'required login') {
+	if (response.data && response.data.errors === 'required login') {
 		localStorage.removeItem(LOCAL_STORAGE_KEY);
 		props.history.push('/login');
 	}
@@ -66,3 +66,18 @@ export const editFile = (fileContent, fileObj ,props) => {
 			console.log(error);
 		});
 };
+
+export const deleteFile = (file,props) => {
+	
+	return axios
+		.delete('/api/file',{data:file})
+		.then(response => {
+			console.log(response);
+			return response.data;
+		})
+		.catch(error => {
+			expiredSession(error.response,props);
+			console.log(error);
+		});
+};
+

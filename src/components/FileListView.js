@@ -18,8 +18,8 @@ const FileListView = (props) => {
 			const fileLocation = fileData.path.split('-');
 			const viewLocation = fileLocation[0].replace('server/upload','');
 			return (props.selectedFile && fileData.path === props.selectedFile.path)
-			? <SelectedLi onClick={() => props.clickFileList(fileData._id)}>{viewLocation}</SelectedLi>
-			: <UnSelectedLi onClick={() => props.clickFileList(fileData._id)}>{viewLocation}</UnSelectedLi>
+			? <SelectedLi key={fileLocation[1]} onClick={() => props.clickFileList(fileData._id)}>{viewLocation}</SelectedLi>
+			: <UnSelectedLi key={fileLocation[1]} onClick={() => props.clickFileList(fileData._id)}>{viewLocation}</UnSelectedLi>
 		});
 	};
 	

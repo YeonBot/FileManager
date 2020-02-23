@@ -30,8 +30,11 @@ class FileManager extends React.Component {
 	};
 
 	handleSave = async () => {
-		console.log('put axios data');
 		FileService.editFile(this.state.fileContent, this.state.selectedFile, this.props);
+	};
+
+	handleDelete = async () => {
+		FileService.deleteFile(this.state.selectedFile,this.props);
 	};
 
 	handleFileInput = e => {
@@ -55,24 +58,40 @@ class FileManager extends React.Component {
 	clickFileList = async fileId => {
 		console.log(fileId);
 		const file = await FileService.getFile(fileId, this.props);
-
-		this.setState({
+		
+		if(!file){
+			this.initFileList();
+		}else{
+			this.setState({
 			fileContent: file.fileContent,
 			selectedFile: file
 		});
+		}
+
 	};
 
 	render() {
-		
 		return (
 			<div className="row fullscrean">
 				<div className="col-3">
-					<FileAddition handleFileInput={this.handleFileInput} handlePost={this.handlePost} />
-					<FileListView selectedFile={this.state.selectedFile} allFileData={this.state.allFileData} clickFileList={this.clickFileList}/>
-					
+					<FileAddition
+						handleFileInput={this.handleFileInput}
+						handlePost={this.handlePost}
+					/>
+					<FileListView
+						selectedFile={this.state.selectedFile}
+						allFileData={this.state.allFileData}
+						clickFileList={this.clickFileList}
+					/>
 				</div>
 				<div className="col-9">
-					<FileTextArea selectedFile={this.state.selectedFile} fileContent={this.state.fileContent} handleTextAreaChange={this.handleTextAreaChange} handleSave={this.handleSave}/>
+					<FileTextArea
+						selectedFile={this.state.selectedFile}
+						fileContent={this.state.fileContent}
+						handleTextAreaChange={this.handleTextAreaChange}
+						handleSave={this.handleSave}
+						handleDelete={this.handleDelete}
+					/>
 				</div>
 			</div>
 		);
