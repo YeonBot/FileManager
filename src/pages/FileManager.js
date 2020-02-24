@@ -34,7 +34,8 @@ class FileManager extends React.Component {
 	};
 
 	handleDelete = async () => {
-		FileService.deleteFile(this.state.selectedFile,this.props);
+		await FileService.deleteFile(this.state.selectedFile, this.props);
+		this.initFileList();
 	};
 
 	handleFileInput = e => {
@@ -58,16 +59,15 @@ class FileManager extends React.Component {
 	clickFileList = async fileId => {
 		console.log(fileId);
 		const file = await FileService.getFile(fileId, this.props);
-		
-		if(!file){
-			this.initFileList();
-		}else{
-			this.setState({
-			fileContent: file.fileContent,
-			selectedFile: file
-		});
-		}
 
+		if (!file) {
+			this.initFileList();
+		} else {
+			this.setState({
+				fileContent: file.fileContent,
+				selectedFile: file
+			});
+		}
 	};
 
 	render() {
