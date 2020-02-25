@@ -6,7 +6,7 @@ const InputWrapper = styled.div`
 	left: 0px;
 	bottom: 20px;
 	text-align: center;
-	padding: 0 15px 15px 0;
+	padding:  15px 0px 15px 0;
 `;
 
 const InputMessage  = styled.input`

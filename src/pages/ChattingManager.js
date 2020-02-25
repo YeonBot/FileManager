@@ -7,25 +7,33 @@ let socket = null;
 
 class ChattingManager extends React.Component {
 	state = {
-		text: '',
+		text: [],
 		message: '',
-		friendList: []
+		channelList: ['All','All_dev'],
+		connectList: ['test','test','test','test','test'],
+		unConnectList: ['unCo','unCo','unCo','unCo','unCo']
 	};
 
 	componentDidMount() {
 		socket = io('https://nodeserver-keknq.run.goorm.io', {
 			path: '/api/socket'
 		});
-		socket.on('chat message', data => this.setState({ text: this.state.text + data }));
+
+		socket.on('chat message', data => {
+			this.setState({ text: this.state.text.concat(data) });
+		});
 	}
 
 	handlePostMessage = () => {
-		socket.emit('Add message', this.state.message);
+		const userInfo = JSON.parse(localStorage.user);
+		socket.emit(
+			'Add message',
+			JSON.stringify({ name: userInfo.name, message: this.state.message })
+		);
 	};
 
 	handleMassageChange = e => {
 		if (e.keyCode === 13) {
-			console.log('pressed enter ');
 			return;
 		}
 
@@ -37,10 +45,10 @@ class ChattingManager extends React.Component {
 	handleKeyPress = e => {
 		if (e.key === 'Enter') {
 			this.handlePostMessage();
-			
+
 			this.setState({
-				message: ""
-			})
+				message: ''
+			});
 		}
 	};
 
@@ -48,7 +56,11 @@ class ChattingManager extends React.Component {
 		return (
 			<div className="row fullscrean">
 				<div className="col-2">
-					<ChatRoomList />
+					<ChatRoomList 
+						channelList={this.state.channelList}
+						connectList={this.state.connectList}
+						unConnectList={this.state.unConnectList}
+						/>
 					<h2>{this.state.friendList}</h2>
 				</div>
 				<div className="col-10">

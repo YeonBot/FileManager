@@ -6,7 +6,7 @@ export default async ({ server }) => {
 	io.on('connection', function(socket) {
 		console.log('Client connected');
 		
-		socket.emit("chat message","채팅 시작 입니다")
+		socket.emit("chat message",JSON.stringify({name:"",message:"채팅 시작."}))
 		
 		socket.on("Add message",req=>{
 			console.log(req);

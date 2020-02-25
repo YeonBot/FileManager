@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const FileAdditionWrapper = styled.div`
@@ -6,7 +6,7 @@ const FileAdditionWrapper = styled.div`
 	left: 0px;
 	position: relative;
 	padding: 90px 10px 10px 10px;
-	border-bottom: 1px solid;
+	border-bottom: 1px solid #E8E8E8;
 `
 
 const Blank = styled.div`padding: 5px;`;
@@ -15,7 +15,7 @@ const FileAddition = props => {
 	return (
 		<FileAdditionWrapper>
 			<h5>파일 올리기</h5>
-			<div class="custom-file">
+			<div className="custom-file">
 				<input
 					name="file"
 					type="file"
@@ -23,7 +23,7 @@ const FileAddition = props => {
 					id="customFileLang"
 					onChange={e => props.handleFileInput(e)}
 				/>
-				<label class="custom-file-label" for="customFileLang" data-browse="찾기">
+				<label className="custom-file-label" htmlFor="customFileLang" data-browse="찾기">
 					{props.postFile ? props.postFile.name : 'Input File'}
 				</label>
 			</div>

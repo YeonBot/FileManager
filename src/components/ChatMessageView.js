@@ -5,30 +5,59 @@ const TextOuterWrapper = styled.div`
 	height: 90%;
 	left: 0px;
 	position: relative;
-	padding: 80px 10px 10px 10px;
+	padding: 90px 0px 0px 0px;
+	overflow: hidden;
+`;
+
+const TextMiddleWrapper = styled.div`
+	height: 100%;
+	width: 100%;
+	left: 0px;
+	border: 0.5px solid #808080;
+	position: relative;
 	overflow: scroll;
 `;
 
 const TextInnerWrapper = styled.div`
 	position: absolute;
-  	bottom: 0;
+	height: -webkit-fill-available;
+	bottom: 0;
 	padding: 10px;
 `;
 
-const TextWrapper = styled.div`padding: 10px;`;
+const TextWrapper = styled.div`
+	padding: 10px;
+`;
+
+const UserName = styled.span`
+	font-weight: bold;
+`;
 
 const ChatMessageView = props => {
 	
-  useEffect(() => {
-	  var objDiv = document.getElementById("messageScroll"); 
-	  objDiv.scrollTop = objDiv.scrollHeight;
-  });
+	useEffect(() => {
+		var objDiv = document.getElementById('messageScroll');
+		objDiv.scrollTop = objDiv.scrollHeight;
+	});
+	
+	const showMessageView = () => {
+		
+		return props.text.map((message,idx) => {
+			console.log(typeof message);
+			const messageInfo = JSON.parse(message);
+			return <TextWrapper key={message+idx}><UserName>{messageInfo.name}  </UserName> {messageInfo.message}</TextWrapper>;
+		})
+	}
 
 	return (
-		<TextOuterWrapper id="messageScroll">
-			<TextInnerWrapper>
-				<TextWrapper>{props.text}</TextWrapper>
-			</TextInnerWrapper>
+		<TextOuterWrapper>
+			<TextMiddleWrapper id="messageScroll">
+				<TextInnerWrapper>
+					
+					{showMessageView()}
+
+				</TextInnerWrapper>
+			</TextMiddleWrapper>
 		</TextOuterWrapper>
 	);
 };
