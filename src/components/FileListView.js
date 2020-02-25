@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const FileListViewWrapper = styled.div`
+	padding : 80px 0 0 0 0;
+`
+
 const SelectedLi = styled.li`
 	background: white;
 `
@@ -24,9 +28,9 @@ const FileListView = (props) => {
 	};
 	
 	return (
-		<div>
+		<FileListViewWrapper>
 			<ul>{showFileList()}</ul>
-		</div>
+		</FileListViewWrapper>
 	);
 };
 

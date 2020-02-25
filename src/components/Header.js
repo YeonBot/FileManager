@@ -5,29 +5,31 @@ import styled from 'styled-components';
 import * as UserService from 'services/userService';
 
 const StyledLink = styled(NavLink)`
-	color: white;
+	color: black;
 	margin: 1vw;
 	font-weight: bold;
 	&:hover {
-		color:#007BFF;
+		color: #fff;
+		-webkit-text-stroke: 0.5px #000;
 		text-decoration: none;
 	}
 	&.active {
-		color: #007BFF;
+		color: #fff;
+		-webkit-text-stroke: 0.5px #000;
 	}
 `;
 
 const StyledLogoutButton = styled.button`
-	color: white;
+	color: black;
 	margin: 1vw;
 	font-weight: bold;
-	background-color:  transparent !important;;
-	border:none;
+	background-color: transparent !important;
+	border: none;
 	&:hover {
-		color:#007BFF;
+		color: #fff;
+		-webkit-text-stroke: 0.5px #000;
 	}
-	
-`
+`;
 
 function Header(props) {
 	const logout = () => {
@@ -47,7 +49,10 @@ function Header(props) {
 			</React.Fragment>
 		) : (
 			<React.Fragment>
-				<StyledLogoutButton onClick={() => logout()}> {JSON.parse(userInfo).name} 님 </StyledLogoutButton>
+				<StyledLogoutButton onClick={() => logout()}>
+					{' '}
+					{JSON.parse(userInfo).name} 님{' '}
+				</StyledLogoutButton>
 				<StyledLogoutButton onClick={() => logout()}> 로그아웃 </StyledLogoutButton>
 			</React.Fragment>
 		);
@@ -55,8 +60,8 @@ function Header(props) {
 
 	return (
 		<header className="App-header">
-			<div className="container">
-				<div className="row">
+			<div className="container h-100">
+				<div className="row h-100">
 					<div className="col text-left align-self-center">
 						<StyledLink activeClassName="active" exact to={'/'}>
 							홈
@@ -68,7 +73,7 @@ function Header(props) {
 							채팅
 						</StyledLink>
 					</div>
-					<div className="col text-right">{authHeader()}</div>
+					<div className="col text-right align-self-center">{authHeader()}</div>
 				</div>
 			</div>
 		</header>

@@ -7,16 +7,5 @@ module.exports = function(app) {
 			changeOrigin: true
 		})
 	);
-	
-	// app.use(
-	// 	proxy('/socket.io/', {
-	// 		target: 'http://localhost:3001/',
-	// 		changeOrigin: true
-	// 	})
-	// );
-	// app.use(
-	// 	proxy('/socket/', {target:'http://localhost:3001/', changeOrigin: true});
-	// );
-
 
 };
