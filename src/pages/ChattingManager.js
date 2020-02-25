@@ -24,7 +24,7 @@ class ChattingManager extends React.Component {
 	};
 
 	handleMassageChange = e => {
-		if (e.keyCode == 13) {
+		if (e.keyCode === 13) {
 			console.log('pressed enter ');
 			return;
 		}

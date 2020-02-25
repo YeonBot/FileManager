@@ -2,16 +2,36 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FileListViewWrapper = styled.div`
-	padding : 80px 0 0 0 0;
+	height: 70%;
+	left: 0px;
+	position: relative;
+	padding: 10px 10px 10px 10px;
+	overflow: scroll;
 `
-
 const SelectedLi = styled.li`
-	background: white;
+	background: #353B40;
+	color: #fff;
+padding-left: 1em;
+  text-indent: -1em;
+&:before {
+  content: "▶";
+  padding-right: 5px;
+}
 `
 
 const UnSelectedLi = styled.li`
-	background: #353B40;
-	color: #fff;
+	background: white;
+padding-left: 1em;
+  text-indent: -1em;
+&:before {
+  content: ">";
+  padding-right: 5px;
+}
+`
+const CustomUl = styled.ul`
+	list-style: none;
+  margin-left: 0;
+  padding-left: 0;
 `
 
 const FileListView = (props) => {
@@ -29,7 +49,8 @@ const FileListView = (props) => {
 	
 	return (
 		<FileListViewWrapper>
-			<ul>{showFileList()}</ul>
+			<h5>파일 목록</h5>
+			<CustomUl>{showFileList()}</CustomUl>
 		</FileListViewWrapper>
 	);
 };

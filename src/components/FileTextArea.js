@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 require('codemirror/lib/codemirror.css');
 require('codemirror/theme/material-darker.css');
+require('codemirror/theme/dracula.css');
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/cmake/cmake');
 require('codemirror/mode/markdown/markdown');
@@ -14,10 +15,11 @@ const FileTextAreaWrapper = styled.div`
 	position: relative;
 	padding: 80px 10px 10px 10px;
 	overflow: scroll;
+	border-left: 1px solid #808080;
 `;
 
 const Mirror = styled(CodeMirror)`
-
+	height: auth;
 `;
 
 const FileTextArea = props => {
@@ -31,7 +33,7 @@ const FileTextArea = props => {
 
 	var options = {
 		lineNumbers: true,
-		theme: 'material-darker'
+		theme: 'dracula'
 	};
 
 	return (
@@ -47,10 +49,12 @@ const FileTextArea = props => {
 					y: 50
 				}}
 			/>
-			<button className="btn btn-dark" onClick={() => props.handleSave()}>
+			<hr/>
+			<button className="btn btn-outline-dark" onClick={() => props.handleSave()}>
 				Save
 			</button>
-			<button className="btn btn-dark" onClick={() => props.handleDelete()}>
+			<span> </span>
+			<button className="btn btn-outline-dark" onClick={() => props.handleDelete()}>
 				Delete
 			</button>
 		</FileTextAreaWrapper>

@@ -39,6 +39,7 @@ class FileManager extends React.Component {
 	};
 
 	handleFileInput = e => {
+		console.log(e.target.files[0]);
 		this.setState({
 			postFile: e.target.files[0]
 		});
@@ -77,6 +78,7 @@ class FileManager extends React.Component {
 					<FileAddition
 						handleFileInput={this.handleFileInput}
 						handlePost={this.handlePost}
+						postFile={this.state.postFile}
 					/>
 					<FileListView
 						selectedFile={this.state.selectedFile}
