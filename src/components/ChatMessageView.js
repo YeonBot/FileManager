@@ -43,9 +43,7 @@ const ChatMessageView = props => {
 	const showMessageView = () => {
 		
 		return props.text.map((message,idx) => {
-			console.log(typeof message);
-			const messageInfo = JSON.parse(message);
-			return <TextWrapper key={message+idx}><UserName>{messageInfo.name}  </UserName> {messageInfo.message}</TextWrapper>;
+			return <TextWrapper key={message+idx}><UserName>{message.name}  </UserName> {message.message}</TextWrapper>;
 		})
 	}
 

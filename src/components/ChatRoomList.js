@@ -7,13 +7,23 @@ const ChatRoomListFrame = styled.div`
 	padding: 90px 0 0 10px;
 `;
 
-const Ul = styled.ul`list-style: none;
-`;
+const Ul = styled.ul`list-style: none;`;
 
 const Connectli = styled.li`
 	&:before {
-		content: "●";
-		color: #2BAC76;
+		content: '●';
+		color: #2bac76;
+		font-weight: lighter;
+		display: inline-block;
+		width: 1em;
+		margin-left: -1em;
+	}
+`;
+
+const Roomli = styled.li`
+	&:before {
+		content: '○';
+		color: #080808;
 		font-weight: lighter;
 		display: inline-block;
 		width: 1em;
@@ -23,8 +33,19 @@ const Connectli = styled.li`
 
 const UnConnectli = styled.li`
 	&:before {
-		content: "○";
+		content: '○';
 		color: #080808;
+		font-weight: lighter;
+		display: inline-block;
+		width: 1em;
+		margin-left: -1em;
+	}
+`;
+
+const SelectedLi = styled.li`
+	border-bottom : 1px solid #808080;
+	&:before {
+		content: '●';
 		font-weight: lighter;
 		display: inline-block;
 		width: 1em;
@@ -35,19 +56,33 @@ const UnConnectli = styled.li`
 const ChatRoomList = props => {
 	const showChannelList = () => {
 		return props.channelList.map((channel, idx) => {
-			return <li key={channel+idx}>{channel}</li>;
+			if (channel === props.selectedRoom) {
+				return <SelectedLi key={channel + idx}>{channel}</SelectedLi>;
+			}
+			return (
+				<Roomli key={channel + idx} onClick={() => props.handleClickRoom(channel)}>
+					{channel}
+				</Roomli>
+			);
 		});
 	};
 
 	const showConnectList = () => {
 		return props.connectList.map((user, idx) => {
-			return <Connectli key={user+idx}>{user}</Connectli>;
+			if (user.socketId === props.selectedRoom) {
+				return <SelectedLi key={user + idx}>{user.name}</SelectedLi>;
+			}
+			return (
+				<Connectli key={user + idx} onClick={() => props.handleClickRoom(user.socketId)}>
+					{user.name}
+				</Connectli>
+			);
 		});
 	};
 
 	const showUnConnectList = () => {
 		return props.unConnectList.map((user, idx) => {
-			return <UnConnectli key={user+idx}>{user}</UnConnectli>;
+			return <UnConnectli key={user + idx}>{user}</UnConnectli>;
 		});
 	};
 
@@ -57,7 +92,7 @@ const ChatRoomList = props => {
 				<h5>Channels</h5>
 			</div>
 			<div className="row">
-				<ul>{showChannelList()}</ul>
+				<Ul>{showChannelList()}</Ul>
 			</div>
 			<div className="row">
 				<h5>Direct Messages</h5>

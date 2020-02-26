@@ -167,7 +167,8 @@ server
 ## 채팅 구현하기
 - 일단 socket io 공부 부터
 	- Websocket 이란 : 클라이언트와 서버의 연결을 항상 유지, 양방향으로 데이터 전달 가능 
-	- , Socket IO, 
+- Proxy를 이용한 websocket 연결 -> 삽질 하루 날림
+- emit 과 on 을 이용한 사용자 실시간 채팅 구현
 
 
 

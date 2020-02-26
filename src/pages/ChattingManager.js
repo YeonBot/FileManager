@@ -4,17 +4,23 @@ import io from 'socket.io-client';
 import { ChatRoomList, ChatMessageInput, ChatMessageView } from 'components';
 
 let socket = null;
+let userInfo = null;
 
 class ChattingManager extends React.Component {
 	state = {
 		text: [],
 		message: '',
-		channelList: ['All','All_dev'],
-		connectList: ['test','test','test','test','test'],
-		unConnectList: ['unCo','unCo','unCo','unCo','unCo']
+		channelList: ['All'],
+		connectList: [],
+		unConnectList: [],
+
+		selectedRoom: 'All'
 	};
 
+	//시작 되면 채팅방에 들어온다.
 	componentDidMount() {
+		console.log('componentDidMount()');
+		userInfo = JSON.parse(localStorage.user);
 		socket = io('https://nodeserver-keknq.run.goorm.io', {
 			path: '/api/socket'
 		});
@@ -22,29 +28,46 @@ class ChattingManager extends React.Component {
 		socket.on('chat message', data => {
 			this.setState({ text: this.state.text.concat(data) });
 		});
+
+		socket.on('user list', data => {
+			console.log(data);
+			this.setState({ connectList: data });
+		});
+
+		socket.emit('chat login', userInfo);
+	}
+
+	componentWillUnmount() {
+		console.log('componentWillUnmount()');
+		socket.disconnect();
 	}
 
 	handlePostMessage = () => {
-		const userInfo = JSON.parse(localStorage.user);
-		socket.emit(
-			'Add message',
-			JSON.stringify({ name: userInfo.name, message: this.state.message })
-		);
+		socket.emit('All message', { name: userInfo.name, message: this.state.message });
+	};
+
+	handleWhisperMessage = () => {
+		socket.emit('whisper message', {
+			name: userInfo.name,
+			message: this.state.message,
+			socketId: this.state.selectedRoom
+		});
 	};
 
 	handleMassageChange = e => {
-		if (e.keyCode === 13) {
-			return;
-		}
-
 		this.setState({
 			message: e.target.value
 		});
 	};
 
+	// Enter Key 눌릴때
 	handleKeyPress = e => {
 		if (e.key === 'Enter') {
-			this.handlePostMessage();
+			if (this.state.selectedRoom === 'All') {
+				this.handlePostMessage();
+			} else {
+				this.handleWhisperMessage();
+			}
 
 			this.setState({
 				message: ''
@@ -52,15 +75,24 @@ class ChattingManager extends React.Component {
 		}
 	};
 
+	handleClickRoom = socketId => {
+		console.log(socketId);
+		this.setState({
+			selectedRoom: socketId
+		});
+	};
+
 	render() {
 		return (
 			<div className="row fullscrean">
 				<div className="col-2">
-					<ChatRoomList 
+					<ChatRoomList
 						channelList={this.state.channelList}
 						connectList={this.state.connectList}
 						unConnectList={this.state.unConnectList}
-						/>
+						selectedRoom={this.state.selectedRoom}
+						handleClickRoom={this.handleClickRoom}
+					/>
 					<h2>{this.state.friendList}</h2>
 				</div>
 				<div className="col-10">
