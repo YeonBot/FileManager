@@ -9,12 +9,15 @@ let userInfo = null;
 class ChattingManager extends React.Component {
 	state = {
 		text: [],
+		whisperText: [],
+		
 		message: '',
 		channelList: ['All'],
 		connectList: [],
 		unConnectList: [],
 
-		selectedRoom: 'All'
+		selectedRoom: 'All',
+		chatlist: []
 	};
 
 	//시작 되면 채팅방에 들어온다.
@@ -34,6 +37,11 @@ class ChattingManager extends React.Component {
 			this.setState({ connectList: data });
 		});
 
+		socket.on('chat list', data => {
+			console.log(data);
+			this.setState({ chatlist: data });
+		});
+		
 		socket.emit('chat login', userInfo);
 	}
 
@@ -49,6 +57,7 @@ class ChattingManager extends React.Component {
 	handleWhisperMessage = () => {
 		socket.emit('whisper message', {
 			name: userInfo.name,
+			email: userInfo.email,
 			message: this.state.message,
 			socketId: this.state.selectedRoom
 		});

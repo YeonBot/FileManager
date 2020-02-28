@@ -19,7 +19,9 @@ const FileTextAreaWrapper = styled.div`
 `;
 
 const Mirror = styled(CodeMirror)`
-	height: auth;
+	.CodeMirror {
+	height: 76vh;
+}
 `;
 
 const FileTextArea = props => {

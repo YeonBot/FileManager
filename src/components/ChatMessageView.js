@@ -51,9 +51,7 @@ const ChatMessageView = props => {
 		<TextOuterWrapper>
 			<TextMiddleWrapper id="messageScroll">
 				<TextInnerWrapper>
-					
 					{showMessageView()}
-
 				</TextInnerWrapper>
 			</TextMiddleWrapper>
 		</TextOuterWrapper>

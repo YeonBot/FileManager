@@ -17,6 +17,7 @@ const InputMessage  = styled.input`
 `
 
 const ChatRoomList = props => {
+	
 	return (
 		<InputWrapper>
 			<InputMessage
@@ -25,6 +26,7 @@ const ChatRoomList = props => {
 				onChange={props.handleMassageChange}
 				onKeyPress={props.handleKeyPress}
 			/>
+			
 		</InputWrapper>
 	);
 };
