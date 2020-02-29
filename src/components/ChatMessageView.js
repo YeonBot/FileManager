@@ -25,34 +25,46 @@ const TextInnerWrapper = styled.div`
 	padding: 10px;
 `;
 
-const TextWrapper = styled.div`
-	padding: 10px;
-`;
+const TextWrapper = styled.div`padding: 10px;`;
 
-const UserName = styled.span`
-	font-weight: bold;
-`;
+const UserName = styled.span`font-weight: bold;`;
 
 const ChatMessageView = props => {
-	
 	useEffect(() => {
 		var objDiv = document.getElementById('messageScroll');
 		objDiv.scrollTop = objDiv.scrollHeight;
 	});
-	
+
 	const showMessageView = () => {
-		
-		return props.text.map((message,idx) => {
-			return <TextWrapper key={message+idx}><UserName>{message.name}  </UserName> {message.message}</TextWrapper>;
-		})
-	}
+		if (props.selectedRoom === 'All') {
+			return props.text.map((message, idx) => {
+				return (
+					<TextWrapper key={message + idx}>
+						<UserName>{message.name} </UserName> {message.message}
+					</TextWrapper>
+				);
+			});
+		}else {
+			const data = props.whisperMessage.filter((whisper) => whisper.email === props.selectedRoom.email);
+
+			if(data[0]){
+				return data[0].messageData.map((message,idx) => {
+					return (
+					<TextWrapper key={message + idx}>
+						<UserName>{message.name} </UserName> {message.message}
+					</TextWrapper>
+				);
+				})
+			}else {
+				return null;
+			}
+		}
+	};
 
 	return (
 		<TextOuterWrapper>
 			<TextMiddleWrapper id="messageScroll">
-				<TextInnerWrapper>
-					{showMessageView()}
-				</TextInnerWrapper>
+				<TextInnerWrapper>{showMessageView()}</TextInnerWrapper>
 			</TextMiddleWrapper>
 		</TextOuterWrapper>
 	);

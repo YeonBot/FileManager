@@ -25,16 +25,20 @@ export const getAllMessage = message => {
 export const getWhisperData = async whisperIds => {
 	if (!whisperIds) return;
 
-	const value = await Promise.all(
+	return await Promise.all(
 		whisperIds.map(async whisper => {
-			// console.log(whisper);
-			console.log(await WhisperModel.findOne({ _id: whisper.whisperId }));
-			whisper = Object.assign(
-				whisper,
-				await WhisperModel.findOne({ _id: whisper.whisperId })
-			);
+			
+			const obj1 = Object.assign({},await WhisperModel.findOne({ _id: whisper.whisperId }));
+			const result = obj1._doc
+			result.email = whisper.email;
+			console.log(result);
+			
+			return result;
 		})
 	);
+	
+	console.log('value');
+	console.log(whisperIds);
 };
 
 export const getUserChatList = email => {
@@ -60,8 +64,14 @@ export const addWhisperMessage = async (message, whisperId) => {
 	WhisperModel.updateOne(
 		{ _id: whisperId },
 		{ $push: { messageData:  message  } },
-		{ upsert: true }
-	);
+		{ upsert: true })
+	.then(whisperData => {
+			console.log(whisperData);
+			return whisperData;
+		})
+		.catch(err => {
+			throw err;
+		});
 };
 
 export const addFirstWhisperMessage = async (message, fromUser, toUser) => {

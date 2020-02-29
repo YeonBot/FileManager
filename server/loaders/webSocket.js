@@ -53,9 +53,8 @@ export default async ({ server }) => {
 				return result;
 			});
 			
-			await ChatService.getWhisperData(whisperIds);
-			
-			// console.log(whisperIds);
+			const whisperData = await ChatService.getWhisperData(whisperIds);
+			socket.emit('whisper Data', whisperData);
 		});
 
 		/* 
@@ -98,8 +97,9 @@ export default async ({ server }) => {
 
 			ChatService.addWhisperMessage(req, whisperId);
 
-			socket.emit('chat message', req);
-			io.to(req.socketId).emit('chat message', req);
+			io.to(req.socketId).emit('whisper message', req);
+			req.email = toUser[0].email;
+			socket.emit('whisper message', req);
 		});
 
 		/*

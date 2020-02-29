@@ -17,7 +17,7 @@ class ChattingManager extends React.Component {
 		unConnectList: [],
 
 		selectedRoom: 'All',
-		chatlist: []
+		whisperMessage:[],
 	};
 
 	//시작 되면 채팅방에 들어온다.
@@ -31,16 +31,26 @@ class ChattingManager extends React.Component {
 		socket.on('chat message', data => {
 			this.setState({ text: this.state.text.concat(data) });
 		});
+		
+		socket.on('whisper Data', data => {
+			this.setState({ whisperMessage: data });
+		});
+		
+		socket.on('whisper message', data => {
+			const addedWhisper = this.state.whisperMessage.filter((whisper) => whisper.email === data.email);
+			
+			addedWhisper[0].messageData.push(data);
+			this.setState({
+				whisperMessage : this.state.whisperMessage.map(
+					elem => (elem.email === data.email) ? addedWhisper[0] :elem )
+			});
+		});
 
 		socket.on('user list', data => {
 			console.log(data);
 			this.setState({ connectList: data });
 		});
-
-		socket.on('chat list', data => {
-			console.log(data);
-			this.setState({ chatlist: data });
-		});
+		
 		
 		socket.emit('chat login', userInfo);
 	}
@@ -59,7 +69,7 @@ class ChattingManager extends React.Component {
 			name: userInfo.name,
 			email: userInfo.email,
 			message: this.state.message,
-			socketId: this.state.selectedRoom
+			socketId: this.state.selectedRoom.socketId
 		});
 	};
 
@@ -105,7 +115,10 @@ class ChattingManager extends React.Component {
 					<h2>{this.state.friendList}</h2>
 				</div>
 				<div className="col-10">
-					<ChatMessageView text={this.state.text} />
+					<ChatMessageView 
+						text={this.state.text}
+						selectedRoom={this.state.selectedRoom}
+						whisperMessage={this.state.whisperMessage}/>
 
 					<ChatMessageInput
 						message={this.state.message}

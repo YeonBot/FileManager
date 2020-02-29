@@ -73,7 +73,7 @@ const ChatRoomList = props => {
 				return <SelectedLi key={user + idx}>{user.name}</SelectedLi>;
 			}
 			return (
-				<Connectli key={user + idx} onClick={() => props.handleClickRoom(user.socketId)}>
+				<Connectli key={user + idx} onClick={() => props.handleClickRoom(user)}>
 					{user.name}
 				</Connectli>
 			);
